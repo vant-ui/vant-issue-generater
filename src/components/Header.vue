@@ -1,5 +1,11 @@
 <template>
-  <ALayoutHeader>
+  <ALayoutHeader class="header">
+    <a href="https://github.com/youzan/vant" target="_blank">
+      <div class="logo">
+        <img src="https://img.yzcdn.cn/vant/logo.png" alt="">
+        <span>Vant</span>
+      </div>
+    </a>
     <AMenu
       :selected-keys="selectedKeys"
       theme="dark"
@@ -45,4 +51,21 @@ export default {
 }
 </script>
 <style scoped lang="scss">
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo {
+  img {
+    width: 26px;
+    margin-right: 5px;
+    vertical-align: middle;
+  }
+  span {
+    color: #fff;
+    font-size: 22px;
+    vertical-align: middle;
+  }
+}
 </style>

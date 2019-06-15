@@ -1,6 +1,6 @@
 export default {
   'en-US': {
-    name: 'Englist',
+    name: 'English',
     label: {
       issueType: 'Issue Type',
       issueTitle: ' Issue Title',

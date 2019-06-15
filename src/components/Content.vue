@@ -16,7 +16,7 @@
       >
         <AFormItem :label="contents.label.issueType">
           <ASelect
-            v-decorator="['type', { initialValue: contents.issueTypeInit, rules: [{ required: true }]}]"
+            v-decorator="['issueType', { initialValue: contents.issueTypeInit, rules: [{ required: true }]}]"
           >
             <ASelectOption v-for="option in contents.issueTypeOptions" :key="option.key" :value="option.key">
               {{ option.label }}
@@ -26,13 +26,13 @@
 
         <AFormItem :label="contents.label.issueTitle">
           <AInput
-            v-decorator="['title', { rules: [{ required: true, message: contents.message.issueTitle }]}]"
+            v-decorator="['issueTitle', { rules: [{ required: true, message: contents.message.issueTitle }]}]"
           />
         </AFormItem>
 
         <AFormItem :label="contents.label.version">
           <ASelect
-            v-decorator="['type', { initialValue: initVersion, rules: [{ required: true }]}]"
+            v-decorator="['version', { initialValue: initVersion, rules: [{ required: true }]}]"
           >
             <ASelectOption v-for="version in versions" :key="version" :value="version">
               {{ version }}
@@ -48,7 +48,7 @@
 
         <AFormItem :label="contents.label.vueVersion">
           <ASelect
-            v-decorator="['type', { initialValue: initVueVersion, rules: [{ required: true }]}]"
+            v-decorator="['vueVersion', { initialValue: initVueVersion, rules: [{ required: true }]}]"
           >
             <ASelectOption v-for="version in vueVersions" :key="version" :value="version">
               {{ version }}
@@ -93,7 +93,7 @@
       </AForm>
     </ACol>
 
-    <Preview v-if="showPreivew" :form-value="formValue" @close="showPreivew=false" />
+    <Preview v-if="showPreivew" :contents="contents" :form-value="formValue" @close="showPreivew=false" />
   </ARow>
 </template>
 <script>
@@ -104,7 +104,7 @@ export default {
   components: { Preview },
   data () {
     return {
-      showPreivew: true,
+      showPreivew: false,
       formValue: {},
       formLayout: 'vertical',
       form: this.$form.createForm(this),
@@ -132,6 +132,7 @@ export default {
       this.form.validateFields((err, values) => {
         if (!err) {
           console.log('Received values of form: ', values)
+          this.formValue = values
           this.showPreivew = true
         }
       })
@@ -147,7 +148,7 @@ export default {
       this.initVueVersion = this.vueVersions[0]
     }
   },
-  mounted () {
+  created () {
     this.fetchRepositoryVersion()
     this.fetchVueVersion()
   }

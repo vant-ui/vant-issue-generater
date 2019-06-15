@@ -27,7 +27,8 @@ export default {
       label: 'Feature',
       key: 'Feature'
     }],
-    previewBtn: 'Preview'
+    previewBtn: 'Preview',
+    createBtn: 'Create'
   },
   'zh-CN': {
     name: '中文',
@@ -57,6 +58,7 @@ export default {
       label: 'Feature',
       key: 'Feature'
     }],
-    previewBtn: '预览'
+    previewBtn: '预览',
+    createBtn: '创建'
   }
 }

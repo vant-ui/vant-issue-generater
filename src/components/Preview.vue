@@ -1,19 +1,18 @@
 <template>
-  <div class="preview">
-    <AModal
-      title="Issue 预览"
-      :visible="true"
-      @cancel="$emit('close')"
-    >
-      <div v-html="issueHTML" />
+  <AModal
+    class="preview"
+    title="Issue 预览"
+    :visible="true"
+    @cancel="$emit('close')"
+  >
+    <div v-html="issueHTML" />
 
-      <template slot="footer">
-        <AButton type="primary" @click="handleCreate">
-          {{ contents.createBtn }}
-        </AButton>
-      </template>
-    </AModal>
-  </div>
+    <template slot="footer">
+      <AButton type="primary" @click="handleCreate">
+        {{ contents.createBtn }}
+      </AButton>
+    </template>
+  </AModal>
 </template>
 <script>
 import marked from 'marked'
@@ -48,7 +47,10 @@ export default {
       let issue = ''
       this.issueContentKeys.forEach(key => {
         if (!this.formValue[key]) return
-        issue += `
+        issue += key === 'url' ? `
+### ${this.contents.label[key]}
+<a href="${this.formValue[key]}" target="_blank">${this.formValue[key]}</a>
+` : `
 ### ${this.contents.label[key]}
 ${this.formValue[key]}
 `
@@ -60,6 +62,21 @@ ${this.formValue[key]}
     },
     issueHTML () {
       return marked(this.issueMD)
+    }
+  },
+  watch: {
+    issueHTML: {
+      handler () {
+        this.$nextTick(() => {
+          let links = document.querySelectorAll('.preview a')
+          links.forEach(dom => {
+            if (!dom.getAttribute('target')) {
+              dom.setAttribute('target', '_blank')
+            }
+          })
+        })
+      },
+      immediate: true
     }
   },
   methods: {

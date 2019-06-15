@@ -65,7 +65,10 @@
 
         <AFormItem v-if="isBug" :label="contents.label.url">
           <AInput
-            v-decorator="['url', { rules: [{ required: true, message: contents.message.url }]}]"
+            v-decorator="['url', { rules: [
+              { required: true, message: contents.message.url },
+              { type: 'url', message: contents.message.notUrl },
+            ]}]"
           />
         </AFormItem>
 

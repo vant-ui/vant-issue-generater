@@ -73,7 +73,7 @@
           <p>{{ contents.label.demo }}</p>
           <ul>
             <li>
-              <a href="https://codesandbox.io/s/m5v3f">codesandbox</a>
+              <a href="https://codesandbox.io/s/m5v3f" target="_blank">codesandbox</a>
             </li>
           </ul>
         </AFormItem>

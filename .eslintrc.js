@@ -2,7 +2,7 @@ module.exports = {
   root: true,
 
   env: {
-    node: true,
+    node: true
   },
 
   extends: [
@@ -53,15 +53,16 @@ module.exports = {
         ]
       }
     ],
-    'vue/max-attributes-per-line': 'off'
+    'vue/max-attributes-per-line': 'off',
+    'vue/no-v-html': 'off'
   },
 
   parserOptions: {
-    parser: 'babel-eslint',
+    parser: 'babel-eslint'
   },
 
   'extends': [
     'plugin:vue/recommended',
     '@vue/standard'
   ]
-};
+}

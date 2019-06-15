@@ -37,7 +37,6 @@ export default {
   },
   methods: {
     switchMenu ({ key }) {
-      console.log(key)
       this.$router.push({
         name: key
       })

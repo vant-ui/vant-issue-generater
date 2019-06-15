@@ -24,7 +24,7 @@ export default {
   },
   data () {
     return {
-      issueContentKeys: ['version', 'browser', 'vueVersion', 'url', 'expectation', 'actual']
+      issueContentKeys: ['version', 'browser', 'vueVersion', 'url', 'expectation', 'actual', 'isHasComponent', 'componentName', 'description']
     }
   },
   computed: {
@@ -35,6 +35,7 @@ export default {
     issueMD () {
       let issue = ''
       this.issueContentKeys.forEach(key => {
+        if (!this.formValue[key]) return
         issue += `
 ### ${this.contents.label[key]}
 ${this.formValue[key]}

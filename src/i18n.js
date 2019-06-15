@@ -10,23 +10,22 @@ export default {
       demo: 'Use codesandbox to reproduce issue. If it requires build setup, then create a project and provide a link to a repository.',
       url: 'Reproduction Link',
       expectation: 'What is Expected?',
-      actual: 'What is actually happening?'
+      actual: 'What is actually happening?',
+      isHasComponent: 'Existing component?',
+      componentName: 'Component Name',
+      description: 'Issue Description'
     },
     message: {
       issueTitle: 'Please provide issue title.',
       browser: 'Please select version of Browser/OS.',
       url: 'Please provide reproduction link.',
       expectation: 'Please provide what is expected?',
-      actual: 'Please provide what is actually happening?'
+      actual: 'Please provide what is actually happening?',
+      componentName: 'Please provide the name of component.',
+      description: 'Please provide description.'
     },
-    issueTypeInit: 'Bug',
-    issueTypeOptions: [{
-      label: 'Bug',
-      key: 'Bug'
-    }, {
-      label: 'Feature',
-      key: 'Feature'
-    }],
+    issueTypeOptions: ['Bug', 'Feature'],
+    isHasComponentOptions: ['Yes', 'No'],
     previewBtn: 'Preview',
     createBtn: 'Create'
   },
@@ -41,23 +40,22 @@ export default {
       demo: '请提供可以重现 issue 的链接或者项目，例如：',
       url: '重现链接',
       expectation: '期待的行为',
-      actual: '实际的行为'
+      actual: '实际的行为',
+      isHasComponent: '是否已有组件',
+      componentName: '组件名称',
+      description: 'Issue 描述'
     },
     message: {
       issueTitle: '请填写Issue标题',
       browser: '请填写浏览器版本 / 系统版本',
       url: '请填写重现链接',
       expectation: '请填写期待的行为',
-      actual: '请填写实际的行为'
+      actual: '请填写实际的行为',
+      componentName: '请填写组件名称',
+      description: '请填写Issue 描述'
     },
-    issueTypeInit: 'Bug',
-    issueTypeOptions: [{
-      label: 'Bug',
-      key: 'Bug'
-    }, {
-      label: 'Feature',
-      key: 'Feature'
-    }],
+    issueTypeOptions: ['Bug', 'Feature'],
+    isHasComponentOptions: ['是', '否'],
     previewBtn: '预览',
     createBtn: '创建'
   }

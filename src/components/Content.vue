@@ -41,6 +41,12 @@
           </ASelect>
         </AFormItem>
 
+        <AFormItem v-if="isBug" :label="contents.label.device">
+          <AInput
+            v-decorator="['device', { rules: [{ required: true, message: contents.message.device }]}]"
+          />
+        </AFormItem>
+
         <AFormItem v-if="isBug" :label="contents.label.browser">
           <AInput
             v-decorator="['browser', { rules: [{ required: true, message: contents.message.browser }]}]"
@@ -86,7 +92,7 @@
           />
         </AFormItem>
 
-        <AFormItem v-if="!isBug" :label="contents.label.isHasComponent">
+        <AFormItem v-if="isFeature" :label="contents.label.isHasComponent">
           <ARadioGroup
             v-decorator="['isHasComponent', { initialValue: contents.isHasComponentOptions[0], rules: [{ required: true }]}]"
             button-style="solid"
@@ -98,15 +104,29 @@
           </ARadioGroup>
         </AFormItem>
 
-        <AFormItem v-if="!isBug && hasComponentIsTrue.includes(isHasComponent)" :label="contents.label.componentName">
+        <AFormItem v-if="isFeature && hasComponentIsTrue.includes(isHasComponent)" :label="contents.label.componentName">
           <AInput
             v-decorator="['componentName', { rules: [{ required: true, message: contents.message.componentName }]}]"
           />
         </AFormItem>
 
-        <AFormItem v-if="!isBug" :label="contents.label.description">
+        <AFormItem v-if="isFeature" :label="contents.label.solveDesc">
           <ATextarea
-            v-decorator="['description', { rules: [{ required: true, message: contents.message.description }]}]"
+            v-decorator="['solveDesc', { rules: [{ required: true, message: contents.message.solveDesc }]}]"
+            :rows="4"
+          />
+        </AFormItem>
+
+        <AFormItem v-if="isFeature" :label="contents.label.solutionDesc">
+          <ATextarea
+            v-decorator="['solutionDesc', { rules: [{ required: true, message: contents.message.solutionDesc }]}]"
+            :rows="4"
+          />
+        </AFormItem>
+
+        <AFormItem v-if="isFeature" :label="contents.label.apiDesc">
+          <ATextarea
+            v-decorator="['apiDesc', { rules: [{ required: true, message: contents.message.apiDesc }]}]"
             :rows="4"
           />
         </AFormItem>
@@ -152,6 +172,9 @@ export default {
   computed: {
     isBug () {
       return this.issueType === 'Bug'
+    },
+    isFeature () {
+      return !this.isBug
     },
     lang () {
       return this.$route.name

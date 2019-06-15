@@ -24,7 +24,19 @@ export default {
   },
   data () {
     return {
-      issueContentKeys: ['version', 'browser', 'vueVersion', 'url', 'expectation', 'actual', 'isHasComponent', 'componentName', 'description']
+      issueContentKeys: [
+        'version',
+        'browser',
+        'vueVersion',
+        'url',
+        'expectation',
+        'actual',
+        'isHasComponent',
+        'componentName',
+        'solveDesc',
+        'solutionDesc',
+        'apiDesc'
+      ]
     }
   },
   computed: {

@@ -41,12 +41,6 @@
           </ASelect>
         </AFormItem>
 
-        <AFormItem v-if="isBug" :label="contents.label.deviceOrBrowser">
-          <AInput
-            v-decorator="['deviceOrBrowser', { rules: [{ required: true, message: contents.message.deviceOrBrowser }]}]"
-          />
-        </AFormItem>
-
         <AFormItem v-if="isBug" :label="contents.label.vueVersion">
           <ASelect
             v-decorator="['vueVersion', { initialValue: initVueVersion, rules: [{ required: true }]}]"
@@ -55,6 +49,12 @@
               {{ version }}
             </ASelectOption>
           </ASelect>
+        </AFormItem>
+
+        <AFormItem v-if="isBug" :label="contents.label.deviceOrBrowser">
+          <AInput
+            v-decorator="['deviceOrBrowser', { rules: [{ required: true, message: contents.message.deviceOrBrowser }]}]"
+          />
         </AFormItem>
 
         <AFormItem v-if="isBug" :label="contents.label.url">

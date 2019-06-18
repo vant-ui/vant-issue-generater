@@ -24,48 +24,62 @@
             </ARadioButton>
           </ARadioGroup>
         </AFormItem>
+        <ARow :gutter="20">
+          <ACol :span="12">
+            <AFormItem :label="contents.label.issueTitle">
+              <AInput
+                v-decorator="['issueTitle', { rules: [{ required: true, message: contents.message.issueTitle }]}]"
+              />
+            </AFormItem>
+          </ACol>
 
-        <AFormItem :label="contents.label.issueTitle">
-          <AInput
-            v-decorator="['issueTitle', { rules: [{ required: true, message: contents.message.issueTitle }]}]"
-          />
-        </AFormItem>
+          <ACol :span="12">
+            <AFormItem v-if="isBug" :label="contents.label.deviceOrBrowser">
+              <AInput
+                v-decorator="['deviceOrBrowser', { rules: [{ required: true, message: contents.message.deviceOrBrowser }]}]"
+              />
+            </AFormItem>
+          </ACol>
+        </ARow>
 
-        <AFormItem v-if="isBug" :label="contents.label.version">
-          <ASelect
-            v-decorator="['version', { initialValue: initVersion, rules: [{ required: true }]}]"
-          >
-            <ASelectOption v-for="version in versions" :key="version" :value="version">
-              {{ version }}
-            </ASelectOption>
-          </ASelect>
-        </AFormItem>
+        <ARow :gutter="20">
+          <ACol :span="12">
+            <AFormItem v-if="isBug" :label="contents.label.version">
+              <ASelect
+                v-decorator="['version', { initialValue: initVersion, rules: [{ required: true }]}]"
+              >
+                <ASelectOption v-for="version in versions" :key="version" :value="version">
+                  {{ version }}
+                </ASelectOption>
+              </ASelect>
+            </AFormItem>
+          </ACol>
 
-        <AFormItem v-if="isBug" :label="contents.label.vueVersion">
-          <ASelect
-            v-decorator="['vueVersion', { initialValue: initVueVersion, rules: [{ required: true }]}]"
-          >
-            <ASelectOption v-for="version in vueVersions" :key="version" :value="version">
-              {{ version }}
-            </ASelectOption>
-          </ASelect>
-        </AFormItem>
+          <ACol :span="12">
+            <AFormItem v-if="isBug" :label="contents.label.vueVersion">
+              <ASelect
+                v-decorator="['vueVersion', { initialValue: initVueVersion, rules: [{ required: true }]}]"
+              >
+                <ASelectOption v-for="version in vueVersions" :key="version" :value="version">
+                  {{ version }}
+                </ASelectOption>
+              </ASelect>
+            </AFormItem>
+          </ACol>
+        </ARow>
 
-        <AFormItem v-if="isBug" :label="contents.label.deviceOrBrowser">
-          <AInput
-            v-decorator="['deviceOrBrowser', { rules: [{ required: true, message: contents.message.deviceOrBrowser }]}]"
-          />
-        </AFormItem>
-
-        <AFormItem v-if="isBug" :label="contents.label.url">
-          <AInput
-            v-decorator="['url', { rules: [
-              { required: true, message: contents.message.url },
-              { type: 'url', message: contents.message.notUrl },
-            ]}]"
-          />
-        </AFormItem>
-
+        <ARow :gutter="20">
+          <ACol :span="12">
+            <AFormItem v-if="isBug" :label="contents.label.url">
+              <AInput
+                v-decorator="['url', { rules: [
+                  { required: true, message: contents.message.url },
+                  { type: 'url', message: contents.message.notUrl },
+                ]}]"
+              />
+            </AFormItem>
+          </ACol>
+        </ARow>
         <AFormItem v-if="isBug">
           <p>{{ contents.label.demo }}</p>
           <ul>
@@ -75,56 +89,31 @@
           </ul>
         </AFormItem>
 
-        <AFormItem v-if="isBug" :label="contents.label.expectation">
+        <AFormItem v-if="isBug" :label="contents.label.description">
           <ATextarea
-            v-decorator="['expectation', { rules: [{ required: true, message: contents.message.expectation }]}]"
-            :rows="4"
-          />
-        </AFormItem>
-
-        <AFormItem v-if="isBug" :label="contents.label.actual">
-          <ATextarea
-            v-decorator="['actual', { rules: [{ required: true, message: contents.message.actual }]}]"
-            :rows="4"
-          />
-        </AFormItem>
-
-        <AFormItem v-if="isFeature" :label="contents.label.isHasComponent">
-          <ARadioGroup
-            v-decorator="['isHasComponent', { initialValue: contents.isHasComponentOptions[0], rules: [{ required: true }]}]"
-            button-style="solid"
-            @change="isHasComponentChange"
-          >
-            <ARadioButton v-for="item in contents.isHasComponentOptions" :key="item" :value="item">
-              {{ item }}
-            </ARadioButton>
-          </ARadioGroup>
-        </AFormItem>
-
-        <AFormItem v-if="isFeature && hasComponentIsTrue.includes(isHasComponent)" :label="contents.label.componentName">
-          <AInput
-            v-decorator="['componentName', { rules: [{ required: true, message: contents.message.componentName }]}]"
+            v-decorator="['description', { rules: [{ required: true, message: contents.message.description }]}]"
+            :rows="3"
           />
         </AFormItem>
 
         <AFormItem v-if="isFeature" :label="contents.label.solveDesc">
           <ATextarea
             v-decorator="['solveDesc', { rules: [{ required: true, message: contents.message.solveDesc }]}]"
-            :rows="4"
+            :rows="3"
           />
         </AFormItem>
 
         <AFormItem v-if="isFeature" :label="contents.label.solutionDesc">
           <ATextarea
             v-decorator="['solutionDesc', { rules: [{ required: true, message: contents.message.solutionDesc }]}]"
-            :rows="4"
+            :rows="3"
           />
         </AFormItem>
 
         <AFormItem v-if="isFeature" :label="contents.label.apiDesc">
           <ATextarea
             v-decorator="['apiDesc', { rules: [{ required: true, message: contents.message.apiDesc }]}]"
-            :rows="4"
+            :rows="3"
           />
         </AFormItem>
 
@@ -146,13 +135,9 @@ import Preview from './Preview'
 export default {
   components: { Preview },
   data () {
-    let hasComponentIsTrue = Object.keys(LangContents).map(key => LangContents[key].isHasComponentOptions[0])
-
     return {
       showPreivew: false,
       issueType: '',
-      isHasComponent: '',
-      hasComponentIsTrue,
       formValue: {},
       formLayout: 'vertical',
       form: this.$form.createForm(this),
@@ -183,7 +168,6 @@ export default {
   watch: {
     contents: {
       handler () {
-        this.isHasComponent = this.contents.isHasComponentOptions[0]
         this.issueType = this.contents.issueTypeOptions[0]
         this.form && this.form.resetFields()
       },
@@ -199,9 +183,6 @@ export default {
           this.showPreivew = true
         }
       })
-    },
-    isHasComponentChange (e) {
-      this.isHasComponent = e.target.value
     },
     handleIssueTypeChange (e) {
       this.issueType = e.target.value

@@ -41,15 +41,9 @@
           </ASelect>
         </AFormItem>
 
-        <AFormItem v-if="isBug" :label="contents.label.device">
+        <AFormItem v-if="isBug" :label="contents.label.deviceOrBrowser">
           <AInput
-            v-decorator="['device', { rules: [{ required: true, message: contents.message.device }]}]"
-          />
-        </AFormItem>
-
-        <AFormItem v-if="isBug" :label="contents.label.browser">
-          <AInput
-            v-decorator="['browser', { rules: [{ required: true, message: contents.message.browser }]}]"
+            v-decorator="['deviceOrBrowser', { rules: [{ required: true, message: contents.message.deviceOrBrowser }]}]"
           />
         </AFormItem>
 

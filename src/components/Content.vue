@@ -15,14 +15,14 @@
         @submit="handleSubmit"
       >
         <AFormItem :label="contents.label.issueType">
-          <ASelect
+          <ARadioGroup
             v-decorator="['issueType', { initialValue: contents.issueTypeOptions[0], rules: [{ required: true }]}]"
             @change="handleIssueTypeChange"
           >
-            <ASelectOption v-for="option in contents.issueTypeOptions" :key="option" :value="option">
+            <ARadioButton v-for="option in contents.issueTypeOptions" :key="option" :value="option">
               {{ option }}
-            </ASelectOption>
-          </ASelect>
+            </ARadioButton>
+          </ARadioGroup>
         </AFormItem>
 
         <AFormItem :label="contents.label.issueTitle">
@@ -203,8 +203,8 @@ export default {
     isHasComponentChange (e) {
       this.isHasComponent = e.target.value
     },
-    handleIssueTypeChange (value) {
-      this.issueType = value
+    handleIssueTypeChange (e) {
+      this.issueType = e.target.value
     },
     async fetchRepositoryVersion () {
       const { data } = await axios.get(this.versionApi.repositoryVersion)

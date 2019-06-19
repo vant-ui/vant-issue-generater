@@ -15,7 +15,7 @@ export default {
       url: 'Reproduction Link',
       imgUrl: 'Screenshot Url（Separated by carriage return）',
       weappCode: 'Core Code Snippet Link',
-      weappCodePrompt: 'E.g:',
+      weappCodePrompt: 'Code snippet recommendation:',
       notUrl: 'Please provide correct link',
       baseLibVersion: 'Base Library Version',
       description: 'Describe the bug',
@@ -56,15 +56,15 @@ export default {
       demo: '请提供可以重现 issue 的链接或者项目，例如：',
       imgDemo: '截图可以使用免费图床：',
       url: '重现链接',
-      imgUrl: '如果是 UI 问题，截图链接（回车分割）',
+      imgUrl: '如果是 UI 问题，截图链接（多图回车分隔）',
       weappCode: '请提供核心代码片段链接',
-      weappCodePrompt: '可以使用：',
+      weappCodePrompt: '代码片段推荐：',
       description: '描述问题',
       componentName: '组件名称',
       solveDesc: '这个功能解决了什么问题',
       solutionDesc: '描述您想要的解决方案',
       apiDesc: '建议的API是什么样的',
-      codeDemo: '展示一下新功能的大致用法 代码片段链接（GitHub Gist）'
+      codeDemo: '展示一下新功能的大致用法，代码片段链接（GitHub Gist）'
     },
     message: {
       issueTitle: '请填写Issue标题',

@@ -9,8 +9,8 @@
       :sm="18"
       :md="12"
     >
-      <Vant v-if="issueRepo === 'Vant'" :contents="contents" />
-      <VantWeapp v-else-if="issueRepo === 'VantWeapp'" :contents="contents" />
+      <Vant v-if="issueRepo === 'Vant'" :contents="contents" @submit="preview" />
+      <VantWeapp v-else-if="issueRepo === 'VantWeapp'" :contents="contents" @submit="preview" />
     </ACol>
 
     <Preview v-if="showPreivew" :contents="contents" :form-value="formValue" @close="showPreivew=false" />
@@ -26,7 +26,8 @@ export default {
   components: { Preview, Vant, VantWeapp },
   data () {
     return {
-      showPreivew: false
+      showPreivew: false,
+      formValue: {}
     }
   },
   computed: {
@@ -50,13 +51,16 @@ export default {
   watch: {
     contents: {
       handler () {
-        console.log('watch', this.contents)
         this.initState()
       },
       immediate: true
     }
   },
   methods: {
+    preview (values) {
+      this.formValue = values
+      this.showPreivew = true
+    },
     initState () {
       this.$store.commit('save', { key: 'issueRepo', value: this.contents.issueRepoOptions[0] })
       this.$store.commit('save', { key: 'issueType', value: this.contents.issueTypeOptions[0] })

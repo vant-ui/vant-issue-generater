@@ -85,7 +85,7 @@
           <p>{{ contents.label.imgDemo }}</p>
           <ul>
             <li>
-              <a href="https://sm.ms/" target="_blank">sm.sm</a>
+              <a href="https://sm.ms/" target="_blank">sm.ms</a>
             </li>
           </ul>
         </AFormItem>
@@ -157,7 +157,6 @@ export default {
   },
   data () {
     return {
-      formValue: {},
       formLayout: 'vertical',
       form: this.$form.createForm(this),
       versionApi: {
@@ -192,8 +191,7 @@ export default {
       e.preventDefault()
       this.form.validateFields((err, values) => {
         if (!err) {
-          this.formValue = values
-          this.showPreivew = true
+          this.$emit('submit', values)
         }
       })
     },
@@ -205,8 +203,8 @@ export default {
     },
     async fetchRepositoryVersion () {
       const { data } = await axios.get(this.versionApi.repositoryVersion)
-      this.versions = Object.keys(data.versions)
-      this.initWeappVersion = this.versions[0]
+      this.weappVersions = Object.keys(data.versions)
+      this.initWeappVersion = this.weappVersions[0]
     }
   },
   created () {

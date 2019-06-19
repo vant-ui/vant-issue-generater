@@ -183,8 +183,7 @@ export default {
       e.preventDefault()
       this.form.validateFields((err, values) => {
         if (!err) {
-          this.formValue = values
-          this.showPreivew = true
+          this.$emit('submit', values)
         }
       })
     },

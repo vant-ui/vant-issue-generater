@@ -16,6 +16,8 @@
 </template>
 <script>
 import marked from 'marked'
+import kebabCase from 'lodash/kebabCase'
+import { mapState } from 'vuex'
 export default {
   props: {
     contents: Object,
@@ -24,33 +26,37 @@ export default {
   data () {
     return {
       issueContentKeys: [
-        'vantVersion',
         'deviceOrBrowser',
+        'device',
+        'vantVersion',
         'vueVersion',
+        'weappVersion',
+        'baseLibVersion',
         'url',
+        'imgUrl',
+        'weappCode',
         'description',
         'solveDesc',
         'solutionDesc',
-        'apiDesc'
+        'apiDesc',
+        'codeDemo'
       ]
     }
   },
   computed: {
+    ...mapState([
+      'issueRepo',
+      'issueType'
+    ]),
     title () {
-      let type = this.formValue.issueType === 'Bug' ? '[Bug Report]' : '[Feature Request]'
+      let type = this.issueType === 'Bug' ? '[Bug Report]' : '[Feature Request]'
       return `${type} ${this.formValue.issueTitle}`
     },
     issueMD () {
       let issue = ''
       this.issueContentKeys.forEach(key => {
         if (!this.formValue[key]) return
-        issue += key === 'url' ? `
-### ${this.contents.label[key]}
-<a href="${this.formValue[key]}" target="_blank">${this.formValue[key]}</a>
-` : `
-### ${this.contents.label[key]}
-${this.formValue[key]}
-`
+        issue += this.formatToMarkdown(key, this.formValue[key])
       })
       return issue
     },
@@ -78,7 +84,33 @@ ${this.formValue[key]}
   },
   methods: {
     handleCreate () {
-      window.open(`https://github.com/youzan/vant/issues/new?title=${this.title}&body=${this.body}`)
+      window.open(`https://github.com/youzan/${kebabCase(this.issueRepo)}/issues/new?title=${this.title}&body=${this.body}`)
+    },
+    formatToMarkdown (key, value) {
+      switch (key) {
+        case 'url':
+          return `
+### ${this.contents.label[key]}
+<a href="${this.formValue[key]}" target="_blank">${this.formValue[key]}</a>
+`
+        case 'imgUrl':
+          let MDContent = `
+### ${this.contents.label[key]}
+`
+          let imgUrlArr = value.split(/\s/)
+          imgUrlArr.forEach(url => {
+            if (!url.trim()) return
+            MDContent += `
+![截图](${url.trim()})
+`
+          })
+          return MDContent
+        default:
+          return `
+### ${this.contents.label[key]}
+${this.formValue[key]}
+`
+      }
     }
   }
 }

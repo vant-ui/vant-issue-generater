@@ -25,13 +25,10 @@ export default {
     return {
       issueContentKeys: [
         'version',
-        'browser',
+        'deviceOrBrowser',
         'vueVersion',
         'url',
-        'expectation',
-        'actual',
-        'isHasComponent',
-        'componentName',
+        'description',
         'solveDesc',
         'solutionDesc',
         'apiDesc'

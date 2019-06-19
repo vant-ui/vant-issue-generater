@@ -24,7 +24,7 @@ export default {
   data () {
     return {
       issueContentKeys: [
-        'version',
+        'vantVersion',
         'deviceOrBrowser',
         'vueVersion',
         'url',

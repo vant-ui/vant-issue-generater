@@ -44,7 +44,8 @@ export default {
   methods: {
     switchMenu ({ key }) {
       this.$router.push({
-        name: key
+        name: key,
+        query: this.$route.query
       })
     }
   }

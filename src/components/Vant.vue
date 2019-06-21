@@ -188,10 +188,10 @@ export default {
       })
     },
     handleRepoChange (e) {
-      this.$store.commit('save', { key: 'issueRepo', value: e.target.value })
+      this.$emit('repoChange', e)
     },
     handleIssueTypeChange (e) {
-      this.$store.commit('save', { key: 'issueType', value: e.target.value })
+      this.$emit('typeChange', e)
     },
     async fetchRepositoryVersion () {
       const { data } = await axios.get(this.versionApi.repositoryVersion)

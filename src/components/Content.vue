@@ -9,8 +9,8 @@
       :sm="18"
       :md="12"
     >
-      <Vant v-if="issueRepo === 'Vant'" :contents="contents" @submit="preview" />
-      <VantWeapp v-else-if="issueRepo === 'VantWeapp'" :contents="contents" @submit="preview" />
+      <Vant v-if="issueRepo === 'Vant'" :contents="contents" @repoChange="repoChange" @typeChange="typeChange" @submit="preview" />
+      <VantWeapp v-else-if="issueRepo === 'VantWeapp'" :contents="contents" @repoChange="repoChange" @typeChange="typeChange" @submit="preview" />
     </ACol>
 
     <Preview v-if="showPreivew" :contents="contents" :form-value="formValue" @close="showPreivew=false" />
@@ -49,7 +49,7 @@ export default {
     }
   },
   watch: {
-    contents: {
+    '$route': {
       handler () {
         this.initState()
       },
@@ -57,13 +57,34 @@ export default {
     }
   },
   methods: {
+    typeChange  (e) {
+      this.$router.replace({
+        name: this.$route.name,
+        query: {
+          ...this.$route.query,
+          type: e.target.value
+        }
+      })
+    },
+    repoChange (e) {
+      this.$router.replace({
+        name: this.$route.name,
+        query: {
+          ...this.$route.query,
+          repo: e.target.value
+        }
+      })
+    },
     preview (values) {
       this.formValue = values
       this.showPreivew = true
     },
     initState () {
-      this.$store.commit('save', { key: 'issueRepo', value: this.contents.issueRepoOptions[0] })
-      this.$store.commit('save', { key: 'issueType', value: this.contents.issueTypeOptions[0] })
+      let { query: { repo, type } } = this.$route
+      repo = (repo && this.contents.issueRepoOptions.includes(repo)) ? repo : ''
+      type = (type && this.contents.issueTypeOptions.includes(type)) ? type : ''
+      this.$store.commit('save', { key: 'issueRepo', value: repo || this.contents.issueRepoOptions[0] })
+      this.$store.commit('save', { key: 'issueType', value: type || this.contents.issueTypeOptions[0] })
     }
   }
 }

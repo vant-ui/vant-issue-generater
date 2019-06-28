@@ -81,8 +81,8 @@ export default {
       this.showPreivew = true
     },
     initState () {
-      const queryRepo = args.get('repo', window.location.href) || ''
-      const queryType = args.get('type', window.location.href) || ''
+      const queryRepo = args.get('repo', window.location.href) || this.$route.query.repo || ''
+      const queryType = args.get('type', window.location.href) || this.$route.query.type || ''
       const repo = (queryRepo && this.contents.issueRepoOptions.includes(queryRepo)) ? queryRepo : ''
       const type = (queryType && this.contents.issueTypeOptions.includes(queryType)) ? queryType : ''
       this.$store.commit('save', { key: 'issueRepo', value: repo || this.contents.issueRepoOptions[0] })

@@ -22,7 +22,6 @@ import Preview from './Preview'
 import Vant from './Vant'
 import VantWeapp from './VantWeapp'
 import { mapState } from 'vuex'
-import args from '@youzan/utils/url/args.js'
 export default {
   components: { Preview, Vant, VantWeapp },
   data () {

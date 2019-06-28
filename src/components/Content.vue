@@ -22,6 +22,7 @@ import Preview from './Preview'
 import Vant from './Vant'
 import VantWeapp from './VantWeapp'
 import { mapState } from 'vuex'
+import args from '@youzan/utils/url/args.js'
 export default {
   components: { Preview, Vant, VantWeapp },
   data () {
@@ -80,9 +81,10 @@ export default {
       this.showPreivew = true
     },
     initState () {
-      let { query: { repo, type } } = this.$route
-      repo = (repo && this.contents.issueRepoOptions.includes(repo)) ? repo : ''
-      type = (type && this.contents.issueTypeOptions.includes(type)) ? type : ''
+      const queryRepo = args.get('repo', window.location.href) || ''
+      const queryType = args.get('type', window.location.href) || ''
+      const repo = (queryRepo && this.contents.issueRepoOptions.includes(queryRepo)) ? queryRepo : ''
+      const type = (queryType && this.contents.issueTypeOptions.includes(queryType)) ? queryType : ''
       this.$store.commit('save', { key: 'issueRepo', value: repo || this.contents.issueRepoOptions[0] })
       this.$store.commit('save', { key: 'issueType', value: type || this.contents.issueTypeOptions[0] })
     }

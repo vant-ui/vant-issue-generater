@@ -160,7 +160,8 @@ export default {
       formLayout: 'vertical',
       form: this.$form.createForm(this),
       versionApi: {
-        repositoryVersion: 'https://registry.npm.taobao.org/vant-weapp'
+        repositoryVersion: 'https://registry.npm.taobao.org/vant-weapp',
+        vantWeappVersion: 'https://registry.npm.taobao.org/@vant/weapp'
       },
       weappVersions: [],
       initWeappVersion: ''
@@ -203,7 +204,9 @@ export default {
     },
     async fetchRepositoryVersion () {
       const { data } = await axios.get(this.versionApi.repositoryVersion)
-      this.weappVersions = Object.keys(data.versions)
+      const { data: newPackageData } = await axios.get(this.versionApi.vantWeappVersion)
+      const allVersions = [...new Set([...Object.keys(newPackageData.versions), ...Object.keys(data.versions)])]
+      this.weappVersions = allVersions
       this.initWeappVersion = this.weappVersions[0]
     }
   },

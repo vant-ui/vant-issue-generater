@@ -22,7 +22,11 @@ export default {
       url: 'Reproduction Link',
       imgUrl: 'Screenshot Url（Separated by carriage return）',
       weappCode: 'Core Code Snippet Link',
-      weappCodePrompt: 'Code snippet recommendation:',
+      weappCodePrompt: `Please provide a link to a
+        <a href="https://gitee.com/gists" target="_blank">Gitee Gist</a>、
+        <a href="https://gist.github.com/" target="_blank">GitHub Gist</a>
+        or provide a GitHub repo.
+        `,
       notUrl: 'Please provide correct link',
       baseLibVersion: 'Base Library Version',
       description: 'Describe the bug',
@@ -67,12 +71,16 @@ export default {
         <a href="https://codesandbox.io/s/m5v3f" target="_blank">CodeSandbox</a>
         或是提供一个 GitHub 仓库的链接。
         `,
-      demoTip: '请不要乱填一个链接，那只会让你的 issue 被直接关闭。',
+      demoTip: '请不要乱填一个链接，这会导致你的 issue 被直接关闭。',
       imgDemo: '截图可以使用免费图床：',
       url: '重现链接',
       imgUrl: '如果是 UI 问题，截图链接（多图回车分隔）',
       weappCode: '请提供核心代码片段链接',
-      weappCodePrompt: '代码片段推荐：',
+      weappCodePrompt: `请提供一个尽可能精简的
+        <a href="https://gitee.com/gists" target="_blank">Gitee Gist</a>、
+        <a href="https://gist.github.com/" target="_blank">GitHub Gist</a> 链接，
+        或是提供一个 GitHub 仓库的链接。
+        `,
       description: '描述问题',
       componentName: '组件名称',
       solveDesc: '这个功能解决了什么问题',

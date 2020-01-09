@@ -105,15 +105,8 @@
         </AFormItem>
 
         <AFormItem v-if="isBug">
-          <p>{{ contents.label.weappCodePrompt }}</p>
-          <ul>
-            <li>
-              <a href="https://gitee.com/gists" target="_blank">Gitee Gist</a>
-            </li>
-            <li>
-              <a href="https://gist.github.com/" target="_blank">GitHub Gist</a>
-            </li>
-          </ul>
+          <p v-html="contents.label.weappCodePrompt" />
+          <p v-html="contents.label.demoTip" />
         </AFormItem>
       </ACol>
     </ARow>

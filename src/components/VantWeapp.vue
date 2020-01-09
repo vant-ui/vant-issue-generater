@@ -37,6 +37,7 @@
         <AFormItem :label="contents.label.issueTitle">
           <AInput
             v-decorator="['issueTitle', { rules: [{ required: true, message: contents.message.issueTitle }]}]"
+            autocomplete="off"
           />
         </AFormItem>
       </ACol>
@@ -45,6 +46,7 @@
         <AFormItem v-if="isBug" :label="contents.label.device">
           <AInput
             v-decorator="['device', { rules: [{ required: true, message: contents.message.device }]}]"
+            autocomplete="off"
           />
         </AFormItem>
       </ACol>
@@ -67,6 +69,7 @@
         <AFormItem v-if="isBug" :label="contents.label.baseLibVersion">
           <AInput
             v-decorator="['baseLibVersion', { rules: [{ required: true, message: contents.message.baseLibVersion }]}]"
+            autocomplete="off"
           />
         </AFormItem>
       </ACol>
@@ -97,6 +100,7 @@
             v-decorator="['weappCode', { rules: [
               { required: true, message: contents.message.weappCode },
               { type: 'url', message: contents.message.notUrl }]}]"
+            autocomplete="off"
           />
         </AFormItem>
 
@@ -138,6 +142,7 @@
     <AFormItem v-if="isFeature" :label="contents.label.codeDemo">
       <AInput
         v-decorator="['codeDemo',{ rules: [{ type: 'url', message: contents.message.notUrl }] }]"
+        autocomplete="off"
       />
     </AFormItem>
 

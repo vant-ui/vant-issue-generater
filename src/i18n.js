@@ -10,7 +10,14 @@ export default {
       device: 'Device',
       vueVersion: 'Vue Version',
       weappVersion: 'VantWeapp Version',
-      demo: 'Use codesandbox to reproduce issue. If it requires build setup, then create a project and provide a link to a repository.',
+      demo: `If the reproduction does not need a build setup, please provide a link to a
+        <a href="https://jsbin.com/?html,output" target="_blank">JsBin</a> or
+        <a href="https://codepen.io/" target="_blank">CodePen</a>.
+        If it requires a build setup, you can use
+        <a href="https://codesandbox.io/s/m5v3f" target="_blank">CodeSandbox</a>
+        or provide a GitHub repo.
+        `,
+      demoTip: 'Please do not just fill in a random link. We will close your issue if you do that.',
       imgDemo: 'Free map bed: ',
       url: 'Reproduction Link',
       imgUrl: 'Screenshot Url（Separated by carriage return）',
@@ -51,9 +58,16 @@ export default {
       weappVersion: 'VantWeapp 版本',
       deviceOrBrowser: '设备 / 浏览器',
       device: '设备',
-      vueVersion: 'Vue版本',
+      vueVersion: 'Vue 版本',
       baseLibVersion: '基础库版本',
-      demo: '请提供可以重现 issue 的链接或者项目，例如：',
+      demo: `如果重现不需要构建工具，请提供一个尽可能精简的
+        <a href="https://jsbin.com/?html,output" target="_blank">JsBin</a> 或者是
+        <a href="https://codepen.io/" target="_blank">CodePen</a> 链接。
+        如果需要构建工具，可以使用
+        <a href="https://codesandbox.io/s/m5v3f" target="_blank">CodeSandbox</a>
+        或是提供一个 GitHub 仓库的链接。
+        `,
+      demoTip: '请不要乱填一个链接，那只会让你的 issue 被直接关闭。',
       imgDemo: '截图可以使用免费图床：',
       url: '重现链接',
       imgUrl: '如果是 UI 问题，截图链接（多图回车分隔）',

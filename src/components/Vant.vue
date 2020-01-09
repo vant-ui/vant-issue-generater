@@ -37,6 +37,7 @@
         <AFormItem :label="contents.label.issueTitle">
           <AInput
             v-decorator="['issueTitle', { rules: [{ required: true, message: contents.message.issueTitle }]}]"
+            autocomplete="off"
           />
         </AFormItem>
       </ACol>
@@ -45,6 +46,7 @@
         <AFormItem v-if="isBug" :label="contents.label.deviceOrBrowser">
           <AInput
             v-decorator="['deviceOrBrowser', { rules: [{ required: true, message: contents.message.deviceOrBrowser }]}]"
+            autocomplete="off"
           />
         </AFormItem>
       </ACol>
@@ -84,16 +86,13 @@
               { required: true, message: contents.message.url },
               { type: 'url', message: contents.message.notUrl },
             ]}]"
+            autocomplete="off"
           />
         </AFormItem>
 
         <AFormItem v-if="isBug">
-          <p>{{ contents.label.demo }}</p>
-          <ul>
-            <li>
-              <a href="https://codesandbox.io/s/m5v3f" target="_blank">codesandbox</a>
-            </li>
-          </ul>
+          <p v-html="contents.label.demo" />
+          <p>{{ contents.label.demoTip }}</p>
         </AFormItem>
       </ACol>
     </ARow>

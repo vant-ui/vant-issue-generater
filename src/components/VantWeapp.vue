@@ -161,8 +161,8 @@ export default {
       formLayout: 'vertical',
       form: this.$form.createForm(this),
       versionApi: {
-        repositoryVersion: 'https://registry.npm.taobao.org/vant-weapp',
-        vantWeappVersion: 'https://registry.npm.taobao.org/@vant/weapp'
+        repositoryVersion: 'https://registry.npmmirror.com/vant-weapp',
+        vantWeappVersion: 'https://registry.npmmirror.com/@vant/weapp'
       },
       weappVersions: [],
       initWeappVersion: ''

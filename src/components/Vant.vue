@@ -148,8 +148,8 @@ export default {
       formLayout: 'vertical',
       form: this.$form.createForm(this),
       versionApi: {
-        repositoryVersion: 'https://registry.npm.taobao.org/vant',
-        vueVersion: 'https://registry.npm.taobao.org/vue'
+        repositoryVersion: 'https://registry.npmmirror.com/vant',
+        vueVersion: 'https://registry.npmmirror.com/vue'
       },
       vantVersions: [],
       initVantVersion: '',
